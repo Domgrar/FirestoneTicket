@@ -68,13 +68,14 @@ namespace FirestoneTicketing
         }
         public static void InitializeDataGrid(DataGridView view)
         {
-            view.ColumnCount = 6;
+            view.ColumnCount = 7;
             view.Columns[0].Name = "TicketID";
             view.Columns[1].Name = "Description";
             view.Columns[2].Name = "Current Technician";
             view.Columns[3].Name = "Original Technician";
             view.Columns[4].Name = "Due Date";
             view.Columns[5].Name = "Is Project?";
+            view.Columns[6].Name = "Comments";
 
             view.BorderStyle = BorderStyle.None;
             view.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(238, 239, 249);
@@ -166,6 +167,30 @@ namespace FirestoneTicketing
             
         }
 
-       
+        private void button1_Click(object sender, EventArgs e)
+        {
+
+            DataGridViewRow selectedRow = null;
+
+            if(dataGridView1.SelectedRows.Count > 1)
+            {
+                MessageBox.Show("Can only edit one row at a time");
+                return;
+            }
+
+            //List<DataGridViewRow> SelectedRows = dataGridView1.SelectedRows;
+            foreach(DataGridViewRow row in dataGridView1.SelectedRows)
+            {
+                selectedRow = row;
+                //foreach(DataGridViewCell cell in row.Cells)
+                //{
+                //    MessageBox.Show(cell.FormattedValue.ToString());
+                //}
+            }
+
+            //Pass rowlist to ticket edit form *Delegate to update row contents?*
+              TicketViewerForm viewForm = new TicketViewerForm(selectedRow);
+              viewForm.Show();
+        }
     }
 }
