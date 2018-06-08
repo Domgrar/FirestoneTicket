@@ -27,5 +27,15 @@ namespace FirestoneTicketing
             this.DueDate = _dueDate;
             this.IsProject = _isProject;
         }
+        public Ticket(string[] ticketInformation)
+        {
+            this.TicketID = ticketInformation[0];
+            this.TicketDescription = ticketInformation[1];
+            this.CurrentTech = ticketInformation[2];
+            this.OriginalTech = ticketInformation[3];
+            this.DueDate = ticketInformation[4];
+            this.IsProject = Convert.ToInt32(ticketInformation[5]);
+            this.TicketID = ticketInformation[6];
+        }
     }
 }
